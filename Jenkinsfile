@@ -3,9 +3,9 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'personal-website'
     }
-    tools {
-        dockerTool 'Docker'
-    }
+    // tools {
+    //     dockerTool 'Docker'
+    // }
 
     stages {
         // stage('Build Image') {
