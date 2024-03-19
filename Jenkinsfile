@@ -1,10 +1,15 @@
 pipeline {
     agent any
+    tools{
+        docker 'Docker'
+    }
 
     stages {
         stage('Build Image') {
             steps {
-                echo "ini build"
+                sh docker build -t kalax1011/personal-website
+                //docker run kalax1011/personal-website
+                
                 }
             }
         
