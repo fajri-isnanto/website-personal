@@ -1,25 +1,32 @@
 pipeline {
     agent any
-    tools{
-        docker 'Docker'
+    environment {
+        DOCKER_IMAGE = 'personal-website'
+    }
+    tools {
+        // Define Docker tool
+        dockerTool 'Docker'
     }
 
     stages {
         stage('Build Image') {
             steps {
-                sh docker build -t personal-website .
+                // Build Docker image
+                script {
+                    sh "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
-        
+        }
+
         stage('Upload Image to DockerHub') {
             steps {
-                echo "ini upload"
-                }
+                // Here you would push the image to DockerHub, replace this echo statement with your actual Docker push command
+                echo "Upload to DockerHub"
             }
+        }
+    }
 
-        }    
-
-    post {  
+    post {
         success {
             echo 'Pipeline succeeded! Docker image built and pushed.'
         }
