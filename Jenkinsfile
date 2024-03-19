@@ -1,22 +1,18 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     environment {
-        DOCKER_IMAGE = 'personal-website'
+        DOCKER_IMAGE = 'kalax1011/personal-website'
     }
-    // tools {
-    //     dockerTool 'Docker'
-    // }
-
     stages {
-        // stage('Build Image') {
-        //     steps {
-        //         // Build Docker image
-        //         script {
-        //             //sh "docker build -t ${DOCKER_IMAGE} ."
-        //             docker.build("${DOCKER_IMAGE}")
-        //         }
-        //     }
-        // }
+        stage('Build Image') {
+            steps {
+                // Build Docker image
+                script {
+                    //sh "docker build -t ${DOCKER_IMAGE} ."
+                    docker.build("${DOCKER_IMAGE}")
+                }
+            }
+        }
 
         stage('Upload Image to DockerHub') {
             steps {
