@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                
+                echo "ini build"
                 }
             }
         
         stage('Upload Image to DockerHub') {
             steps {
-                
+                echo "ini upload"
                 }
             }
 
