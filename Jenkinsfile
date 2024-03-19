@@ -13,7 +13,8 @@ pipeline {
             steps {
                 // Build Docker image
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE} ."
+                    //sh "docker build -t ${DOCKER_IMAGE} ."
+                    docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
