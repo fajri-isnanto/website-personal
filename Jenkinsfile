@@ -25,7 +25,7 @@ pipeline {
 
         stage('Upload Image to DockerHub') {
             steps {
-            script {
+                script {
                     // Login to Docker Hub
                     withDockerRegistry([credentialsId: 'your_dockerhub_credential_id', url: 'https://index.docker.io/v1/']) {
                         // Push Docker image to Docker Hub
@@ -33,7 +33,8 @@ pipeline {
                     }
             }
         }
-    }
+    } 
+}
 
     post {
         success {
