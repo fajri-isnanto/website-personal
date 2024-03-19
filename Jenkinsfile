@@ -5,7 +5,7 @@ pipeline {
     }
     tools {
         // Define Docker tool
-        docker 'Docker'
+        //docker 'Docker'
     }
 
     stages {
