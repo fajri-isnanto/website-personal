@@ -7,9 +7,7 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                docker build -t kalax1011/personal-website .
-                //docker run kalax1011/personal-website
-                
+                sh docker build -t personal-website .
                 }
             }
         
