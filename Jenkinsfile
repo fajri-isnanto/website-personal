@@ -4,6 +4,15 @@ pipeline {
         DOCKER_IMAGE = 'kalax1011/personal-website'
     }
     stages {
+        stage('Delete Old Image') {
+            steps {
+                script {
+                    // Delete old Docker image if it exists
+                    sh "docker rmi -f ${DOCKER_IMAGE} || true"
+                }
+            }
+        }
+
         stage('Build Image') {
             steps {
                 // Build Docker image
@@ -16,8 +25,12 @@ pipeline {
 
         stage('Upload Image to DockerHub') {
             steps {
-                // Here you would push the image to DockerHub, replace this echo statement with your actual Docker push command
-                echo "Upload to DockerHub"
+            script {
+                    // Login to Docker Hub
+                    withDockerRegistry([credentialsId: 'your_dockerhub_credential_id', url: 'https://index.docker.io/v1/']) {
+                        // Push Docker image to Docker Hub
+                        docker.image("${DOCKER_IMAGE}").push("latest")
+                    }
             }
         }
     }
