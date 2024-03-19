@@ -8,15 +8,15 @@ pipeline {
     }
 
     stages {
-        stage('Build Image') {
-            steps {
-                // Build Docker image
-                script {
-                    //sh "docker build -t ${DOCKER_IMAGE} ."
-                    docker.build("${DOCKER_IMAGE}")
-                }
-            }
-        }
+        // stage('Build Image') {
+        //     steps {
+        //         // Build Docker image
+        //         script {
+        //             //sh "docker build -t ${DOCKER_IMAGE} ."
+        //             docker.build("${DOCKER_IMAGE}")
+        //         }
+        //     }
+        // }
 
         stage('Upload Image to DockerHub') {
             steps {
