@@ -2,6 +2,9 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'kalax1011/personal-website'
+        DOCKERHUB_CREDENTIALS_PSW = kodok1011
+        DOCKERHUB_CREDENTIALS_USR = kalax1011
+
     }
     stages {
         stage('Delete Old Image') {
@@ -23,20 +26,25 @@ pipeline {
             }
         }
 
-        stage('Upload Image to DockerHub') {
-            steps {
-                script {
-                    // Login to Docker Hub
-                    withDockerRegistry([credentialsId: 'your_dockerhub_credential_id', url: 'https://index.docker.io/v1/']) {
-                        // Push Docker image to Docker Hub
-                        docker.image("${DOCKER_IMAGE}").push("latest")
-                    }
-            }
-        }
-    } 
+        stage('Login to Docker Hub') {      	
+            steps{                       	
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+                    echo 'Login Completed'      
+            }           
+        }   
+
+        stage('Push Image to Docker Hub') {         
+            steps{                            
+                    sh 'sudo docker push $DOCKER_IMAGE:$BUILD_NUMBER'           
+                    echo 'Push Image Completed'       
+            }            
+        }  
 }
 
     post {
+        always {  
+	        sh 'docker logout'     
+        }   
         success {
             echo 'Pipeline succeeded! Docker image built and pushed.'
         }
