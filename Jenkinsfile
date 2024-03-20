@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS=credentials('kalax1011')
         DOCKER_IMAGE = 'kalax1011/personal-website'
+        DOCKER_REPO = 'kalax1011/personal-website'
         // DOCKERHUB_CREDENTIALS_PSW = 'kodok1011'
         // DOCKERHUB_CREDENTIALS_USR = 'kalax1011'
     }
@@ -41,6 +42,30 @@ pipeline {
                     echo 'Push Image Completed'       
             }            
         }  
+
+        stage('SSH to Docker Server') {
+            steps{
+                //ssh to server
+                sh 'sshpass -p "!qwerty7" ssh root@172.20.103.221'
+                sh 'docker pull $DOCKER_REPO'
+            }
+        }
+        stage('Stop Docker Container') {
+            steps{
+                sh 'docker container stop ${DOCKER_IMAGE}'
+                sh 'docker container rm ${DOCKER_IMAGE}'
+            }
+        }
+        stage('Start Docker Container') {
+            steps{
+                sh 'docker run -d --name ${DOCKER_IMAGE} -p 8020:8030 ${DOCKER_IMAGE}'
+            }
+        }
+        stage('cek container running') {
+            steps{
+                sh 'curl http://172.20.103.226:8030'
+            }
+        }
 }
 
     post {
