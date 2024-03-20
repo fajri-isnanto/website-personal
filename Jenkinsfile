@@ -37,7 +37,7 @@ pipeline {
 
         stage('Push Image to Docker Hub') {         
             steps{                            
-                    sh 'docker push $DOCKER_IMAGE:$BUILD_NUMBER'           
+                    sh 'docker push $DOCKER_IMAGE'           
                     echo 'Push Image Completed'       
             }            
         }  
