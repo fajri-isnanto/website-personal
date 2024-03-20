@@ -52,6 +52,12 @@ pipeline {
                 sh 'docker pull $DOCKER_REPO'
             }
         }
+        stage('Stop Docker Container') {
+            steps{
+                sh 'docker container stop ${CONTAINER_NAME}'
+                sh 'docker container rm ${CONTAINER_NAME}'
+            }
+        }
         stage('Start Docker Container') {
             steps{
                 sh 'docker run -d --name ${CONTAINER_NAME} -p 8020:80 ${DOCKER_IMAGE}'
@@ -62,12 +68,7 @@ pipeline {
                 sh 'curl http://172.20.103.226:8030'
             }
         }
-        stage('Stop Docker Container') {
-            steps{
-                sh 'docker container stop ${CONTAINER_NAME}'
-                sh 'docker container rm ${CONTAINER_NAME}'
-            }
-        }
+        
 }
 
     post {
