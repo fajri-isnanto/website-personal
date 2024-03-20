@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Start Docker Container') {
             steps{
-                sh 'docker run -d --name ${CONTAINER_NAME} -p 8020:8030 ${DOCKER_IMAGE}'
+                sh 'docker run -d --name ${CONTAINER_NAME} -p 8020:80 ${DOCKER_IMAGE}'
             }
         }
         stage('cek container running') {

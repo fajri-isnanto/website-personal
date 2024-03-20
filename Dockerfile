@@ -8,7 +8,7 @@ WORKDIR /usr/share/nginx/html
 COPY . .
 
 # Expose port 8020
-EXPOSE 8020
+EXPOSE 80
 
 # Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
