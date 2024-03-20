@@ -29,7 +29,8 @@ pipeline {
 
         stage('Login to Docker Hub') {      	
             steps{                       	
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -username $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+                    //sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -username $DOCKERHUB_CREDENTIALS_USR --password-stdin' 
+                    echo "kodok1011" | sudo -S docker login -u kalax1011 --password-stdin               		
                     echo 'Login Completed'      
             }           
         }   
