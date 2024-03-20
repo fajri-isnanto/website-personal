@@ -51,6 +51,7 @@ pipeline {
                 sh 'sshpass -p "!qwerty7" ssh -o StrictHostKeyChecking=no root@172.20.103.221'
                 sh 'docker pull $DOCKER_REPO'
             }
+
         }
         stage('Stop Docker Container') {
             steps{
@@ -65,7 +66,7 @@ pipeline {
         }
         stage('cek container running') {
             steps{
-                sh 'curl http://172.20.103.226:8030'
+                sh 'curl http://172.20.103.226:8020'
             }
         }
         
