@@ -3,8 +3,8 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS=credentials('kalax1011')
         DOCKER_IMAGE = 'kalax1011/personal-website'
-        DOCKERHUB_CREDENTIALS_PSW = 'kodok1011'
-        DOCKERHUB_CREDENTIALS_USR = 'kalax1011'
+        // DOCKERHUB_CREDENTIALS_PSW = 'kodok1011'
+        // DOCKERHUB_CREDENTIALS_USR = 'kalax1011'
     }
 
     stages {
