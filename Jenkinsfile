@@ -4,6 +4,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS=credentials('kalax1011')
         DOCKER_IMAGE = 'kalax1011/personal-website'
         DOCKER_REPO = 'kalax1011/personal-website'
+        CONTAINER_NAME = 'personalWebsite'
         // DOCKERHUB_CREDENTIALS_PSW = 'kodok1011'
         // DOCKERHUB_CREDENTIALS_USR = 'kalax1011'
     }
@@ -53,7 +54,7 @@ pipeline {
         }
         stage('Start Docker Container') {
             steps{
-                sh 'docker run -d --name ${DOCKER_IMAGE} -p 8020:8030 ${DOCKER_IMAGE}'
+                sh 'docker run -d --name ${CONTAINER_NAME} -p 8020:8030 ${DOCKER_IMAGE}'
             }
         }
         stage('cek container running') {
@@ -63,8 +64,8 @@ pipeline {
         }
         stage('Stop Docker Container') {
             steps{
-                sh 'docker container stop ${DOCKER_IMAGE}'
-                sh 'docker container rm ${DOCKER_IMAGE}'
+                sh 'docker container stop ${CONTAINER_NAME}'
+                sh 'docker container rm ${CONTAINER_NAME}'
             }
         }
 }
