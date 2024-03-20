@@ -46,7 +46,7 @@ pipeline {
         stage('SSH to Docker Server') {
             steps{
                 //ssh to server
-                sh 'sshpass -p '!qwerty7' ssh root@172.20.103.221'
+                sh 'sshpass -p "!qwerty7" ssh root@172.20.103.221'
                 sh 'docker pull $DOCKER_REPO'
             }
         }
