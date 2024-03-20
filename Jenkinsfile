@@ -1,6 +1,8 @@
 pipeline {
     agent any
     environment {
+        environment {
+        DOCKERHUB_CREDENTIALS=credentials('kalax1011')
         DOCKER_IMAGE = 'kalax1011/personal-website'
         DOCKERHUB_CREDENTIALS_PSW = 'kodok1011'
         DOCKERHUB_CREDENTIALS_USR = 'kalax1011'
@@ -35,7 +37,7 @@ pipeline {
 
         stage('Push Image to Docker Hub') {         
             steps{                            
-                    sh 'sudo docker push $DOCKER_IMAGE:$BUILD_NUMBER'           
+                    sh 'docker push $DOCKER_IMAGE:$BUILD_NUMBER'           
                     echo 'Push Image Completed'       
             }            
         }  
